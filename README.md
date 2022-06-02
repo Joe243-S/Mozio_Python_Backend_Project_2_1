@@ -1,5 +1,6 @@
 # Mozio_Python_Backend_Project_2_1
 coding's test
+Use the main.py to run the code
 
 My name is Lutende Joe Mande
 It took me 26 hours to finish this backend project for web services
