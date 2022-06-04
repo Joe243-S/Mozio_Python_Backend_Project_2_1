@@ -1,19 +1,33 @@
-from ProviderCRUD import choice_p
-from ServiceAreaCRUD import choice_s
+from ProviderCRUD import ChoiceProvider
+from ServiceAreaCRUD import ChoiceServiceArea
+
 
 def main():
-    print('Enter P for Provider\nEnter S for Service Area')
+    done_main = True
+    while done_main is True:
+        print('Welcome to Mozio Group\n'
+              'Enter option P for Provider\'s DataBase Management\n'
+              'Enter option S for Service Area\'s DataBase Management\n'
+              'Enter option C to close the DataBase connection')
 
-    file = input('Choose your file: ')
+        file = input('Enter your option: ')
 
-    if file == 'P':
-        providerObj = choice_p()
-        providerObj.func_Provider()
+        if file == 'P':
+            provider_object = ChoiceProvider()
+            provider_object.function_provider()
 
-    elif file == 'S':
-        serviceObj = choice_s()
-        serviceObj.func_Service()
-    else:
-        print('Wrong choice, you are going to exist.')
+        elif file == 'S':
+            service_object = ChoiceServiceArea()
+            service_object.function_service_area()
+
+        elif file == 'C':
+            done_main = False
+            print('The DataBase connection is closed\n'
+                  'Thanks for trusting Mozio Group')
+
+        else:
+            print('Wrong option, try again!')
+
 
 main()
+

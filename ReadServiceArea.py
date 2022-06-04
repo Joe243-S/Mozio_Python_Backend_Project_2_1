@@ -1,15 +1,14 @@
-import Data as d
+import Data
 
-class read:
 
-    def func_readData(self):
-        connection = d.getConnection()
+class Read:
 
+    def function_read_data(self):
+        connection = Data.get_connection()
         cursor = connection.cursor()
-        cursor.execute("SELECT * FROM ServiceArea")
-
+        delete_query = "SELECT * FROM ServiceArea"
+        cursor.execute(delete_query)
         for row in cursor:
-            print('row = %r' % (row,))
-
+            print('Service Area = %r' % (row,))
         connection.close()
-        print("MySQL connection is closed")
+        print("Done")

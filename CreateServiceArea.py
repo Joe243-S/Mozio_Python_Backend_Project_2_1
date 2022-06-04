@@ -1,29 +1,24 @@
-import Data as d
-from Geojson import getInformation
+import Data
+from Location import get_information
 
-class create:
 
-    def func_createData(self):
-        connection = d.getConnection()
-        name = input('Name: ')
-        price = input('Price: ')
-        information = input('Enter location: ')
+class Create:
 
-        geojson_information = getInformation(information)
-
+    def function_create_data(self):
+        connection = Data.get_connection()
+        name = input('Enter the name: ')
+        price = input('Enter the price: ')
+        information = input('Enter the location: ')
+        location = get_information(information)
         try:
             cursor = connection.cursor()
-            query = """INSERT INTO ServiceArea(name, price, geojson_information) VALUES (%s, %s, %s)"""
-
-            recordCreateS = (name, price, geojson_information)
-            cursor.execute(query, recordCreateS)
-
+            create_query = "INSERT INTO ServiceArea(name, price, location) VALUES (%s, %s, %s)"
+            record_create_service_area = (name, price, location)
+            cursor.execute(create_query, record_create_service_area)
             connection.commit()
             print('Created')
-
         except:
-            print('Somethng worng, please check.')
-
+            print('Ops! Error, try again.')
         finally:
             connection.close()
-            print("MySQL connection is closed")
+            print("Done")

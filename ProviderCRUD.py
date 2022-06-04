@@ -1,31 +1,38 @@
-from CreateProvider import create
-from ReadProvider import read
-from UpdateProvider import update
-from DeleteProvider import delete
+from CreateProvider import Create
+from ReadProvider import Read
+from UpdateProvider import Update
+from DeleteProvider import Delete
 
-class choice_p():
 
-    def func_Provider(self):
-        print('Enter option C to Create\nEnter option R to Read\nEnter option U to Update\nEnter option D to Delete')
-        choiceP = input('Choose your option: ')
+class ChoiceProvider:
 
-        if choiceP == 'C':
-            createObj = create()
-            createObj.func_createData()
+    def function_provider(self):
+        done_provider = True
+        while done_provider is True:
+            print('Provider\'s DataBase Management\n'
+                  'Enter option C to create\n'
+                  'Enter option R to read\n'
+                  'Enter option U to update\n'
+                  'Enter option D to delete\n'
+                  'Enter option Q to close the Provider\'s DataBase Management')
+            choice = input('Enter your option: ')
+            if choice == 'C':
+                create_object = Create()
+                create_object.function_create_data()
+            elif choice == 'R':
+                read_object = Read()
+                read_object.function_read_data()
+            elif choice == 'U':
+                update_object = Update()
+                update_object.function_update_data()
+            elif choice == 'D':
+                delete_object = Delete()
+                delete_object.function_delete_data()
+            elif choice == 'Q':
+                done_provider = False
+                print('Provider\'s DataBase Management is closed.')
+            else:
+                print('Wrong option, try again!')
 
-        elif choiceP == 'R':
-            readObj = read()
-            readObj.func_readData()
 
-        elif choiceP == 'U':
-            updateObj = update()
-            updateObj.func_updateData()
-
-        elif choiceP == 'D':
-            deleteObj = delete()
-            deleteObj.func_deleteData()
-
-        else:
-            print('Wrong choice, you are going to exist.')
-
-choice_p()
+ChoiceProvider()

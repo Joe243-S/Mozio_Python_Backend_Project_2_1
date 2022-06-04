@@ -1,41 +1,32 @@
-import Data as d
+import Data
 
-class delete:
 
-    def func_deleteData(self):
-        connection = d.getConnection()
+class Delete:
 
-        name = input('Enter Service Area\'s name: ')
-
+    def function_delete_data(self):
+        connection = Data.get_connection()
+        name = input('Enter the Service Area\'s name: ')
         try:
-
-            query = """SELECT * FROM ServiceArea WHERE CONVERT(VARCHAR, name) = %s"""
+            query = "SELECT * FROM ServiceArea WHERE CONVERT(VARCHAR, name) = %s"
             cursor = connection.cursor()
-            deleteS = (name)
-            cursor.execute(query, deleteS)
-
+            delete_service_area = (name,)
+            cursor.execute(query, delete_service_area)
             item = cursor.fetchone()
-            print('Data fetched for Provider\'s Id', name)
-            print(' name\t\t\t price\t\t geojson_information')
-            print('--------------------------------------------------------')
-            print(' {}\t\t {}\t\t {} '.format(item[0], item[1], item[2]))
-            print('--------------------------------------------------------')
-            confirm = input('Delete (Y/N)?')
-
+            print('Data fetched for the Service Area', name)
+            print('name\t\t\t\t price\t\t location\n'
+                  '---------------------------------------------------------------------------------\n'
+                  '{}\t\t\t\t {}\t\t {} '.format(item[0], item[1], item[2]))
+            print('---------------------------------------------------------------------------------')
+            confirm = input('Delete(Y/N)?')
             if confirm == 'Y':
-                deleteQuery = """DELETE FROM ServiceArea WHERE CONVERT(VARCHAR, name) = %s"""
-
-                cursor.execute(deleteQuery, deleteS)
+                delete_query = "DELETE FROM ServiceArea WHERE CONVERT(VARCHAR, name) = %s"
+                cursor.execute(delete_query, delete_service_area)
                 connection.commit()
                 print('Deleted')
-
             else:
                 print('Cancelled')
-
-
         except:
-            print('Somethng worng, please check.')
-
+            print('Ops! Error, try again.')
         finally:
             connection.close()
-            print("MySQL connection is closed")
+            print("Done")
